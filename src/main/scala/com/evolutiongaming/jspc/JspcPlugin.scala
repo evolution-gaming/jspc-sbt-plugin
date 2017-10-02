@@ -5,6 +5,7 @@ import java.io.File
 import sbt.Keys._
 import sbt._
 import sbt.util.CacheStoreFactory
+import scala.language.implicitConversions
 
 object JspcPlugin extends AutoPlugin {
 
