@@ -39,5 +39,3 @@ scalacOptions in (Compile,doc) ++= Seq("-no-link-warnings")
 resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
 
 licenses := Seq(("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
-
-publishMavenStyle := false
