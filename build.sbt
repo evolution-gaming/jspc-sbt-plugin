@@ -76,7 +76,7 @@ releaseProcess := Seq[ReleaseStep](
   commitReleaseVersion,
   tagRelease,
   releaseStepCommandAndRemaining("^ publish"),
-  releaseStepTask(bintrayRelease in (project in file("."))),
+  releaseStepTask(bintrayRelease in LocalProject(".")),
   setNextVersion,
   commitNextVersion,
   pushChanges
