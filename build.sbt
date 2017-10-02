@@ -1,5 +1,7 @@
 import sbt.Resolver
 
+addCommandAlias("build", "^all test makeIvyXml packagedArtifacts")
+
 name := "sbt-jspc-plugin"
 
 organization := "com.evolutiongaming"
@@ -40,12 +42,13 @@ val scalacOpts = Seq(
 
 scalacOptions in(Compile, doc) ++= Seq("-no-link-warnings")
 
-resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
+publishArtifact in (Compile, packageDoc) := false
+
+resolvers += Resolver.bintrayRepo("evolutiongaming", "sbt-plugins")
 
 licenses := Seq(("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
 val Scala210 = "2.10.6"
-val Scala211 = "2.11.11"
 val Scala212 = "2.12.3"
 
 scalaVersion := (CrossVersion partialVersion (sbtVersion in pluginCrossBuild).value match {
@@ -61,3 +64,20 @@ scalacOptions in Compile := (CrossVersion partialVersion (sbtVersion in pluginCr
   case Some((1, _)) => scalacOpts.filterNot(_.startsWith("-Xfatal-warnings")) // disabled because: `lines in trait ProcessBuilder is deprecated (since 2.11.0): use lineStream instead`
   case _ => sys error s"Unhandled sbt version ${(sbtVersion in pluginCrossBuild).value}"
 })
+
+import ReleaseTransformations._
+releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runClean,
+  releaseStepCommandAndRemaining("^ test"),
+  releaseStepCommandAndRemaining("^ scripted"),
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  releaseStepCommandAndRemaining("^ publish"),
+  releaseStepTask(bintrayRelease in (project in file("."))),
+  setNextVersion,
+  commitNextVersion,
+  pushChanges
+)
