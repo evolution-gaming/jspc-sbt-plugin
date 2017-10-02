@@ -20,6 +20,9 @@ object JspcPlugin extends AutoPlugin {
 
   override def projectSettings: Seq[Def.Setting[_]] = Seq (
     outputFileName := s"${name.value}_jsp.jar",
+    generatedJspClassesDirName := "generated-jsp-classes",
+    jspcIncludes := """**/*.jsp""",
+    jspcExcludes := """**/.git/**""",
     jspc := {
       val files = (fullClasspath in Runtime).value
       val targetPath = target.value
