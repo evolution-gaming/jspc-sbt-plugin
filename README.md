@@ -12,7 +12,17 @@ expected path to web.xml is
 expected path to JSP is 
 ``` sourceDirectory / "main" / "webapp" ```
 
-## Example
+## Installation
+
+Create a file in your project called project/license.sbt with the following contents:
+
+```
+externalResolvers += Resolver.bintrayIvyRepo("evolutiongaming", "sbt-plugins") 
+ 
+addSbtPlugin( "com.evolutiongaming" % "sbt-jspc-plugin" % "0.8.12")
+```
+
+## Usage
 ```
 lazy val web = 
 Project("web", file("web")).enablePlugins(JspcPlugin)
