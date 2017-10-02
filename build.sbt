@@ -2,6 +2,8 @@ import sbt.Resolver
 
 name := "sbt-jspc-plugin"
 
+organization := "com.evolutiongaming"
+
 sbtPlugin := true
 
 name := "sbt-jspc-plugin"
