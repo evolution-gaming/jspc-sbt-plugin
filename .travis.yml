@@ -6,9 +6,7 @@ language: scala
 
 jdk: oraclejdk8
 
-script: sbt ++$TRAVIS_SCALA_VERSION clean coverage test
-
-after_success: 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sbt ++$TRAVIS_SCALA_VERSION coverageReport coveralls; fi'
+script: sbt ++$TRAVIS_SCALA_VERSION clean test
 
 notifications:
   slack:

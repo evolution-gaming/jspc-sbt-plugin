@@ -61,7 +61,7 @@ scalaVersion := (CrossVersion partialVersion (sbtVersion in pluginCrossBuild).va
 // we will remove this as soon as we will be able to switch to SBT 1.0 and Scala 2.12 for good
 scalacOptions in Compile := (CrossVersion partialVersion (sbtVersion in pluginCrossBuild).value match {
   case Some((0, 13)) => scalacOpts.filterNot(_.startsWith("-target")) :+ "-target:jvm-1.6"
-  case Some((1, _)) => scalacOpts.filterNot(_.startsWith("-Xfatal-warnings")) // disabled because: `lines in trait ProcessBuilder is deprecated (since 2.11.0): use lineStream instead`
+  case Some((1, _)) => scalacOpts
   case _ => sys error s"Unhandled sbt version ${(sbtVersion in pluginCrossBuild).value}"
 })
 
