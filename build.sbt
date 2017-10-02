@@ -8,7 +8,7 @@ sbtPlugin := true
 
 name := "sbt-jspc-plugin"
 
-crossSbtVersions := Seq("0.13.16", "1.0.0")
+crossSbtVersions := Seq("0.13.16", "1.0.2")
 
 publishMavenStyle := false
 
@@ -26,7 +26,7 @@ libraryDependencies ++= Seq(
   "org.codehaus.plexus" % "plexus-utils" % "3.0.17"
 )
 
-scalacOptions ++= Seq(
+val scalacOpts = Seq(
   "-encoding", "UTF-8",
   "-feature",
   "-unchecked",
@@ -38,8 +38,26 @@ scalacOptions ++= Seq(
   "-Ywarn-numeric-widen",
   "-Xfuture")
 
-scalacOptions in (Compile,doc) ++= Seq("-no-link-warnings")
+scalacOptions in(Compile, doc) ++= Seq("-no-link-warnings")
 
 resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
 
 licenses := Seq(("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
+
+val Scala210 = "2.10.6"
+val Scala211 = "2.11.11"
+val Scala212 = "2.12.3"
+
+scalaVersion := (CrossVersion partialVersion (sbtVersion in pluginCrossBuild).value match {
+  case Some((0, 13)) => Scala210
+  case Some((1, _)) => Scala212
+  case _ => sys error s"Unhandled sbt version ${(sbtVersion in pluginCrossBuild).value}"
+})
+
+// Scala 2.10 (used by SBT 0.13.x) supports only Java 1.6
+// we will remove this as soon as we will be able to switch to SBT 1.0 and Scala 2.12 for good
+scalacOptions in Compile := (CrossVersion partialVersion (sbtVersion in pluginCrossBuild).value match {
+  case Some((0, 13)) => scalacOpts.filterNot(_.startsWith("-target")) :+ "-target:jvm-1.6"
+  case Some((1, _)) => scalacOpts.filterNot(_.startsWith("-Xfatal-warnings")) // disabled because: `lines in trait ProcessBuilder is deprecated (since 2.11.0): use lineStream instead`
+  case _ => sys error s"Unhandled sbt version ${(sbtVersion in pluginCrossBuild).value}"
+})
