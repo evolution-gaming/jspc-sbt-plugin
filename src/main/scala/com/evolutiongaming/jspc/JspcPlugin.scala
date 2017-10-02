@@ -4,8 +4,6 @@ import java.io.File
 
 import sbt.Keys._
 import sbt._
-import sbt.util.CacheStoreFactory
-import scala.language.implicitConversions
 
 object JspcPlugin extends AutoPlugin {
 
@@ -18,6 +16,7 @@ object JspcPlugin extends AutoPlugin {
   }
 
   import autoImport._
+  import JarUtility._
 
   override def projectSettings: Seq[Def.Setting[_]] = Seq (
     outputFileName := s"${name.value}_jsp.jar",
@@ -46,15 +45,8 @@ object JspcPlugin extends AutoPlugin {
       
       val cachePath: File = stream.cacheDirectory / "jspc"
 
-      def pack() = {
-        // Required to support the both sbt 0.13 and 1.0
-        implicit def fileToCacheFactory(file: File): CacheStoreFactory = CacheStoreFactory(file)
-
-        val packageConf = new sbt.Package.Configuration(mappings, out, Seq())
-        Package(packageConf, cachePath, stream.log)
-      }
-
-      pack()
+      val packageConf = new sbt.Package.Configuration(mappings, out, Seq())
+      pack(packageConf, cachePath, stream.log)
 
       out
     }
