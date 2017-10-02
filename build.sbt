@@ -10,6 +10,8 @@ name := "sbt-jspc-plugin"
 
 crossSbtVersions := Seq("0.13.16", "1.0.0")
 
+publishMavenStyle := false
+
 description := "JSP compiler"
 
 startYear := Some(2015)
