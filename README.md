@@ -1,6 +1,6 @@
 # jspc-sbt-plugin
 
-JavaServer Pages (JSP) under sbt build.
+JavaServer Pages (JSP) under sbt build. Currently Jetty8 is used a an implementation for compiler.
 
 ## Keys
 
