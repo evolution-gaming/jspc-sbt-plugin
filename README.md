@@ -19,7 +19,7 @@ Create a file in your project called project/license.sbt with the following cont
 ```
 externalResolvers += Resolver.bintrayIvyRepo("evolutiongaming", "sbt-plugins") 
  
-addSbtPlugin( "com.evolutiongaming" % "sbt-jspc-plugin" % "0.8.12")
+addSbtPlugin( "com.evolutiongaming" % "sbt-jspc-plugin" % "0.8.15")
 ```
 
 ## Usage
