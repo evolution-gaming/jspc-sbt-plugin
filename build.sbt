@@ -72,11 +72,7 @@ releaseProcess := Seq[ReleaseStep](
   runClean,
   releaseStepCommandAndRemaining("^ test"),
   setReleaseVersion,
-  commitReleaseVersion,
   tagRelease,
   releaseStepCommandAndRemaining("^ publish"),
-  releaseStepTask(bintrayRelease),
-  setNextVersion,
-  commitNextVersion,
-  pushChanges
+  releaseStepTask(bintrayRelease)
 )
