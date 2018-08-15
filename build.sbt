@@ -23,10 +23,11 @@ organizationHomepage := Some(url("http://evolutiongaming.com"))
 bintrayOrganization := Some("evolutiongaming")
 
 libraryDependencies ++= Seq(
-  "org.eclipse.jetty" % "jetty-util" % "8.1.14.v20131031",
-  "org.eclipse.jetty" % "jetty-jsp" % "8.1.14.v20131031",
-  "org.codehaus.plexus" % "plexus-utils" % "3.0.17"
-)
+  "org.eclipse.jetty" % "jetty-util" % "8.2.0.v20160908",
+  "org.eclipse.jetty" % "jetty-jsp" % "8.2.0.v20160908",
+  "org.eclipse.jetty.orbit" % "javax.servlet.jsp" % "2.2.0.v201112011158",
+  "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016",
+  "org.codehaus.plexus" % "plexus-utils" % "3.1.0")
 
 val scalacOpts = Seq(
   "-encoding", "UTF-8",
