@@ -1,4 +1,4 @@
-# jspc-sbt-plugin
+# jspc-sbt-plugin [![Build Status](https://travis-ci.org/evolution-gaming/sbt-jspc-plugin.svg)](https://travis-ci.org/evolution-gaming/sbt-jspc-plugin) [ ![version](https://api.bintray.com/packages/evolutiongaming/maven/sbt-jspc-plugin/images/download.svg) ](https://bintray.com/evolutiongaming/maven/sbt-jspc-plugin/_latestVersion) [![License: MIT](https://img.shields.io/badge/License-MIT-yellowgreen.svg)](https://opensource.org/licenses/MIT)
 
 JavaServer Pages (JSP) under sbt build. Currently Jetty8 is used a an implementation for compiler.
 

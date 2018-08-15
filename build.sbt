@@ -49,7 +49,7 @@ resolvers += Resolver.bintrayRepo("evolutiongaming", "sbt-plugins")
 licenses := Seq(("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
 
 val Scala210 = "2.10.6"
-val Scala212 = "2.12.3"
+val Scala212 = "2.12.6"
 
 scalaVersion := (CrossVersion partialVersion (sbtVersion in pluginCrossBuild).value match {
   case Some((0, 13)) => Scala210
