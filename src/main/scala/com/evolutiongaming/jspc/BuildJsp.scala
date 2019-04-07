@@ -91,7 +91,7 @@ object BuildJsp {
         FileUtils.deleteDirectory(generatedSourceDirectoryFile)
       }
 
-      generatedSourceDirectoryFile.mkdirs()
+      val _ = generatedSourceDirectoryFile.mkdirs()
     }
 
     def getClassesDir(classesDir: String): String = classesDir + (if (classesDir.endsWith(File.pathSeparator)) "" else File.separator)
