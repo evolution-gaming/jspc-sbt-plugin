@@ -1,7 +1,5 @@
 import sbt.Resolver
 
-addCommandAlias("build", "^all test makeIvyXml packagedArtifacts")
-
 name := "sbt-jspc-plugin"
 
 organization := "com.evolutiongaming"
@@ -44,14 +42,3 @@ publishArtifact in (Compile, packageDoc) := false
 resolvers += Resolver.bintrayRepo("evolutiongaming", "sbt-plugins")
 
 licenses := Seq(("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")))
-
-import ReleaseTransformations._
-releaseProcess := Seq[ReleaseStep](
-  checkSnapshotDependencies,
-  inquireVersions,
-  runClean,
-  releaseStepCommandAndRemaining("^ test"),
-  setReleaseVersion,
-  tagRelease,
-  releaseStepCommandAndRemaining("^ publish"),
-  releaseStepTask(bintrayRelease))
