@@ -23,8 +23,8 @@ crossScalaVersions := Seq("2.12.8")
 resolvers += Resolver.bintrayRepo("evolutiongaming", "maven")
 
 libraryDependencies ++= Seq(
-  "org.eclipse.jetty" % "jetty-util" % "8.2.0.v20160908",
-  "org.eclipse.jetty" % "jetty-jsp" % "8.2.0.v20160908",
+  "org.eclipse.jetty" % "jetty-util" % "9.2.27.v20190403",
+  "org.eclipse.jetty" % "jetty-jsp" % "9.2.27.v20190403",
   "org.codehaus.plexus" % "plexus-utils" % "3.1.0")
 
 licenses := Seq(("MIT", url("https://opensource.org/licenses/MIT")))

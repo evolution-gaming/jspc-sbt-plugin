@@ -26,8 +26,8 @@ object JspcPlugin extends AutoPlugin {
     jspcGeneratedClasses := "generated-jsp-classes",
     jspcIncludes         := """**/*.jsp""",
     jspcExcludes         := """**/.git/**""",
-    jspcSourceJVM        := "1.8",
-    jspcTargetJVM        := "1.8",
+    jspcSourceJVM        := "1.6",
+    jspcTargetJVM        := "1.6",
     jspc                 := {
       val files = (fullClasspath in Runtime).value
       val targetPath = target.value
