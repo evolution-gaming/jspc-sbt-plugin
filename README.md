@@ -14,7 +14,7 @@ expected path to JSP is
 
 ## Installation
 
-Create a file in your project called project/license.sbt with the following contents:
+Create a file in your project called `project/plugins.sbt` with the following contents:
 
 ```scala
 externalResolvers += Resolver.bintrayIvyRepo("evolutiongaming", "sbt-plugins") 
